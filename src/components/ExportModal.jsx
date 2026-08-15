@@ -10,25 +10,25 @@ export function ExportModal({ isOpen, onClose, persona }) {
 
   const handleDownloadJSON = () => {
     const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(persona, null, 2));
-    const downloadAnchor = document.createElement("a");
-    downloadAnchor.setAttribute("href", dataStr);
-    downloadAnchor.setAttribute("download", `${persona.identity.handle || "ron"}-persona.json`);
-    document.body.appendChild(downloadAnchor);
-    downloadAnchor.click();
-    downloadAnchor.remove();
+    const a = document.createElement("a");
+    a.setAttribute("href", dataStr);
+    a.setAttribute("download", `${persona.identity.handle || "ron"}-persona.json`);
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
   };
 
   const handleDownloadMarkdown = () => {
     const dataStr = "data:text/markdown;charset=utf-8," + encodeURIComponent(systemPrompt);
-    const downloadAnchor = document.createElement("a");
-    downloadAnchor.setAttribute("href", dataStr);
-    downloadAnchor.setAttribute("download", `${persona.identity.handle || "ron"}-system-prompt.md`);
-    document.body.appendChild(downloadAnchor);
-    downloadAnchor.click();
-    downloadAnchor.remove();
+    const a = document.createElement("a");
+    a.setAttribute("href", dataStr);
+    a.setAttribute("download", `${persona.identity.handle || "ron"}-system-prompt.md`);
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
   };
 
-  const widgetSnippet = `<!-- Embed Ron's AI Twin Widget on your site -->
+  const widgetSnippet = `<!-- Embed Ron's AI Twin Widget -->
 <script
   src="https://cdn.jsdelivr.net/npm/@ronai/widget@latest/dist/widget.umd.js"
   data-persona="${persona.identity.handle}"
@@ -53,69 +53,71 @@ export function ExportModal({ isOpen, onClose, persona }) {
       <div className="modal-card" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
           <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-            <Download size={18} color="#38bdf8" />
-            <h3 style={{ fontSize: "1.1rem", fontWeight: 700 }}>Export & Share Persona</h3>
+            <Download size={18} color="var(--pat-hud-cyan)" />
+            <h3 style={{ fontFamily: "var(--font-mecha)", fontSize: "1.1rem", fontWeight: 700, letterSpacing: "0.02em" }}>
+              EXTRACT & TRANSMIT PILOT PROFILE
+            </h3>
           </div>
-          <button className="btn-icon" onClick={onClose}>
+          <button className="liquid-btn btn-icon-liquid" onClick={onClose}>
             <X size={16} />
           </button>
         </div>
 
         <div className="modal-body">
-          <p style={{ color: "var(--text-secondary)", fontSize: "0.88rem", marginBottom: "20px" }}>
-            Export your AI Twin's configuration, prompt blueprint, or integration snippets to use in Cursor, ChatGPT, Claude, or your personal website.
+          <p style={{ color: "var(--pat-police-muted)", fontSize: "0.88rem", marginBottom: "20px", fontFamily: "var(--font-mono)" }}>
+            // Export AI Twin configuration, system prompt, or embed snippets for Cursor, ChatGPT, Claude, or your own portfolio.
           </p>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
             {/* Export JSON */}
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", background: "var(--bg-card)", padding: "14px 18px", borderRadius: "var(--radius-md)", border: "1px solid var(--border-card)" }}>
+            <div className="memory-card" style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", padding: "16px 20px" }}>
               <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-                <FileJson size={22} color="#fbbf24" />
+                <FileJson size={22} color="var(--pat-amber-vest)" />
                 <div>
-                  <div style={{ fontWeight: 600, fontSize: "0.92rem" }}>Persona Config (JSON)</div>
-                  <div style={{ fontSize: "0.76rem", color: "var(--text-muted)" }}>Full memory bank, projects, and tone sliders</div>
+                  <div style={{ fontFamily: "var(--font-mecha)", fontWeight: 700, fontSize: "0.92rem" }}>Persona Config (JSON)</div>
+                  <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.76rem", color: "var(--pat-police-muted)" }}>Full memory bank, projects, tone matrix</div>
                 </div>
               </div>
-              <button className="btn-primary" onClick={handleDownloadJSON} style={{ padding: "6px 12px", fontSize: "0.78rem" }}>
+              <button className="liquid-btn liquid-btn-amber" onClick={handleDownloadJSON} style={{ padding: "6px 14px", fontSize: "0.8rem" }}>
                 <Download size={14} />
                 Download JSON
               </button>
             </div>
 
-            {/* Export Markdown System Prompt */}
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", background: "var(--bg-card)", padding: "14px 18px", borderRadius: "var(--radius-md)", border: "1px solid var(--border-card)" }}>
+            {/* Export Markdown */}
+            <div className="memory-card" style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", padding: "16px 20px" }}>
               <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-                <FileText size={22} color="#38bdf8" />
+                <FileText size={22} color="var(--pat-hud-cyan)" />
                 <div>
-                  <div style={{ fontWeight: 600, fontSize: "0.92rem" }}>System Prompt (Markdown)</div>
-                  <div style={{ fontSize: "0.76rem", color: "var(--text-muted)" }}>Ready to paste into ChatGPT, Claude, or custom API</div>
+                  <div style={{ fontFamily: "var(--font-mecha)", fontWeight: 700, fontSize: "0.92rem" }}>System Prompt (Markdown)</div>
+                  <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.76rem", color: "var(--pat-police-muted)" }}>Ready for ChatGPT, Claude, or custom API</div>
                 </div>
               </div>
               <div style={{ display: "flex", gap: "8px" }}>
-                <button className="perspective-toggle" onClick={handleCopyPrompt} style={{ padding: "6px 10px", fontSize: "0.78rem" }}>
-                  {copiedType === "prompt" ? <Check size={14} color="#34d399" /> : <Copy size={14} />}
+                <button className="liquid-btn" onClick={handleCopyPrompt} style={{ padding: "6px 12px", fontSize: "0.8rem" }}>
+                  {copiedType === "prompt" ? <Check size={14} color="var(--pat-radar-green)" /> : <Copy size={14} />}
                   <span>{copiedType === "prompt" ? "Copied" : "Copy"}</span>
                 </button>
-                <button className="btn-primary" onClick={handleDownloadMarkdown} style={{ padding: "6px 12px", fontSize: "0.78rem" }}>
+                <button className="liquid-btn liquid-btn-cyan" onClick={handleDownloadMarkdown} style={{ padding: "6px 14px", fontSize: "0.8rem" }}>
                   <Download size={14} />
                   Download .md
                 </button>
               </div>
             </div>
 
-            {/* Embed Widget Snippet */}
-            <div style={{ background: "var(--bg-card)", padding: "14px 18px", borderRadius: "var(--radius-md)", border: "1px solid var(--border-card)", marginTop: "4px" }}>
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "8px" }}>
-                <div style={{ display: "flex", alignItems: "center", gap: "8px", fontWeight: 600, fontSize: "0.92rem" }}>
-                  <Code2 size={18} color="#34d399" />
+            {/* Embed Widget */}
+            <div className="memory-card" style={{ padding: "16px 20px", gap: "12px" }}>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "8px", fontFamily: "var(--font-mecha)", fontWeight: 700, fontSize: "0.92rem" }}>
+                  <Code2 size={18} color="var(--pat-radar-green)" />
                   Website Embed Snippet
                 </div>
-                <button className="perspective-toggle" onClick={handleCopyWidget} style={{ padding: "4px 8px", fontSize: "0.75rem" }}>
-                  {copiedType === "widget" ? <Check size={13} color="#34d399" /> : <Copy size={13} />}
-                  <span>{copiedType === "widget" ? "Copied Code" : "Copy Code"}</span>
+                <button className="liquid-btn" onClick={handleCopyWidget} style={{ padding: "4px 10px", fontSize: "0.78rem" }}>
+                  {copiedType === "widget" ? <Check size={13} color="var(--pat-radar-green)" /> : <Copy size={13} />}
+                  <span>{copiedType === "widget" ? "Copied" : "Copy Code"}</span>
                 </button>
               </div>
-              <pre style={{ background: "rgba(0,0,0,0.3)", padding: "10px", borderRadius: "6px", fontSize: "0.78rem", color: "var(--text-secondary)", fontFamily: "var(--font-mono)", overflowX: "auto" }}>
+              <pre className="prompt-inspector-box" style={{ maxHeight: "120px", fontSize: "0.78rem" }}>
                 {widgetSnippet}
               </pre>
             </div>
@@ -123,7 +125,7 @@ export function ExportModal({ isOpen, onClose, persona }) {
         </div>
 
         <div className="modal-footer">
-          <button className="perspective-toggle" onClick={onClose}>
+          <button className="liquid-btn" onClick={onClose}>
             Close
           </button>
         </div>

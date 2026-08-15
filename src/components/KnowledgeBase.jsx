@@ -9,7 +9,8 @@ import {
   ExternalLink,
   Search,
   SlidersHorizontal,
-  Code
+  Layers,
+  Terminal
 } from "lucide-react";
 import { GithubIcon } from "./GithubIcon";
 
@@ -47,30 +48,30 @@ export function KnowledgeBase({
 
   return (
     <div className="panel-view-container">
-      {/* Top Header */}
+      {/* Header */}
       <div className="view-header">
         <div>
-          <h2>Knowledge & Memory Base</h2>
+          <h2>SV-2 HANGAR ARCHIVE // KNOWLEDGE BAY</h2>
           <p>
-            Manage the active context, GitHub repositories, and backstory memories injected into {persona.identity.preferredName}'s AI twin.
+            // TELEMETRY REPOSITORY ARCHIVES & ACTIVE PILOT MEMORIES FOR {persona.identity.fullName.toUpperCase()}
           </p>
         </div>
-        <button className="btn-primary" onClick={onOpenAddMemory}>
+        <button className="liquid-btn liquid-btn-amber" onClick={onOpenAddMemory}>
           <Plus size={16} />
-          Add Memory / Project
+          Register Project / Memory
         </button>
       </div>
 
-      {/* Filter and Search Controls */}
-      <div style={{ display: "flex", gap: "12px", alignItems: "center", marginBottom: "20px", flexWrap: "wrap" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "8px", background: "var(--bg-panel)", border: "1px solid var(--border-card)", borderRadius: "var(--radius-md)", padding: "8px 14px", flex: 1, minWidth: "240px" }}>
-          <Search size={16} color="var(--text-muted)" />
+      {/* Filter and Search Capsule Bar */}
+      <div style={{ display: "flex", gap: "12px", alignItems: "center", marginBottom: "24px", flexWrap: "wrap" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "10px", background: "rgba(10, 16, 26, 0.7)", border: "1px solid rgba(255, 255, 255, 0.16)", borderRadius: "var(--radius-pill)", padding: "8px 18px", flex: 1, minWidth: "260px", boxShadow: "inset 0 1px 2px rgba(0, 0, 0, 0.4)" }}>
+          <Search size={16} color="var(--pat-amber-vest)" />
           <input
             type="text"
-            placeholder="Search projects, skills, or memories..."
+            placeholder="Search hangar archives, skills, or memories..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            style={{ background: "transparent", border: "none", outline: "none", color: "var(--text-primary)", width: "100%", fontSize: "0.88rem" }}
+            style={{ background: "transparent", border: "none", outline: "none", color: "var(--pat-police-white)", width: "100%", fontSize: "0.88rem", fontFamily: "var(--font-mecha)" }}
           />
         </div>
 
@@ -79,70 +80,69 @@ export function KnowledgeBase({
             <button
               key={cat}
               onClick={() => setFilterCategory(cat)}
-              className={`nav-tab-btn ${filterCategory === cat ? "active" : ""}`}
-              style={{ textTransform: "capitalize" }}
+              className={`liquid-btn ${filterCategory === cat ? "liquid-btn-cyan" : ""}`}
+              style={{ fontSize: "0.8rem", padding: "6px 14px" }}
             >
-              {cat === "all" ? "All Knowledge" : cat === "projects" ? `GitHub Repos (${persona.projects.length})` : `Memories (${persona.memories.length})`}
+              {cat === "all" ? "All Archives" : cat === "projects" ? `Labor Units (${persona.projects.length})` : `Memories (${persona.memories.length})`}
             </button>
           ))}
         </div>
       </div>
 
-      {/* Projects Section */}
+      {/* GitHub Labor Projects Section */}
       {(filterCategory === "all" || filterCategory === "projects") && filteredProjects.length > 0 && (
-        <div style={{ marginBottom: "32px" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "12px" }}>
-            <FolderGit2 size={18} color="#38bdf8" />
-            <h3 style={{ fontSize: "1.1rem", fontWeight: 700 }}>
-              GitHub Repositories ({filteredProjects.length})
+        <div style={{ marginBottom: "36px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "14px" }}>
+            <FolderGit2 size={18} color="var(--pat-amber-vest)" />
+            <h3 style={{ fontFamily: "var(--font-mecha)", fontSize: "1.15rem", fontWeight: 700, letterSpacing: "0.02em" }}>
+              ACTIVE LABOR UNITS & REPOSITORIES ({filteredProjects.length})
             </h3>
           </div>
 
           <div className="cards-grid">
-            {filteredProjects.map((p) => (
+            {filteredProjects.map((p, idx) => (
               <div key={p.id} className="memory-card">
-                <div className="card-top">
-                  <span className="category-badge" style={{ background: "rgba(56, 189, 248, 0.12)", color: "#38bdf8" }}>
-                    {p.language || "Code"}
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                  <span className="category-badge" style={{ background: "rgba(255, 140, 33, 0.16)", color: "var(--pat-amber-vest)", border: "1px solid rgba(255, 140, 33, 0.35)" }}>
+                    {p.language || "CODE"}
                   </span>
-                  {p.repo && (
-                    <span style={{ fontSize: "0.74rem", color: "var(--text-muted)", fontFamily: "var(--font-mono)" }}>
-                      @{persona.identity.handle}/{p.repo}
-                    </span>
-                  )}
+                  <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.72rem", color: "var(--pat-police-dim)" }}>
+                    UNIT // 0{idx + 1}
+                  </span>
                 </div>
 
                 <h4 className="card-title">{p.title}</h4>
                 <p className="card-content">{p.description}</p>
                 
                 {p.highlights && (
-                  <div style={{ fontSize: "0.78rem", color: "var(--text-muted)", background: "rgba(0,0,0,0.25)", padding: "6px 10px", borderRadius: "6px" }}>
-                    💡 <strong>Highlights:</strong> {p.highlights}
+                  <div style={{ fontSize: "0.78rem", color: "var(--pat-hud-cyan)", background: "rgba(4, 8, 14, 0.4)", border: "1px solid rgba(56, 189, 248, 0.2)", padding: "8px 12px", borderRadius: "10px", fontFamily: "var(--font-mono)" }}>
+                    ⚙️ <strong>SPECS:</strong> {p.highlights}
                   </div>
                 )}
 
-                <div className="card-footer">
-                  <div className="card-links">
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", borderTop: "1px solid rgba(255, 255, 255, 0.08)", paddingTop: "14px", marginTop: "4px" }}>
+                  <div style={{ display: "flex", gap: "8px" }}>
                     {p.demoUrl && (
-                      <a href={p.demoUrl} target="_blank" rel="noreferrer" className="card-link-btn">
-                        <ExternalLink size={13} />
-                        Live Demo
+                      <a href={p.demoUrl} target="_blank" rel="noreferrer" className="liquid-btn" style={{ padding: "4px 10px", fontSize: "0.74rem", color: "var(--pat-amber-vest)" }}>
+                        <ExternalLink size={12} />
+                        Launch Demo
                       </a>
                     )}
                     {p.url && (
-                      <a href={p.url} target="_blank" rel="noreferrer" className="card-link-btn" style={{ color: "var(--text-secondary)" }}>
-                        <GithubIcon size={13} />
-                        GitHub
+                      <a href={p.url} target="_blank" rel="noreferrer" className="liquid-btn" style={{ padding: "4px 10px", fontSize: "0.74rem", color: "var(--pat-police-muted)" }}>
+                        <GithubIcon size={12} />
+                        Archive
                       </a>
                     )}
                   </div>
 
                   <button
-                    className="msg-action-btn"
+                    className="liquid-btn"
+                    style={{ padding: "4px 8px", fontSize: "0.72rem" }}
                     onClick={() => onDeleteProject(p.id)}
-                    title="Remove from knowledge base"
+                    title="Dismantle Project from Bay"
                   >
-                    <Trash2 size={13} />
+                    <Trash2 size={12} />
                   </button>
                 </div>
               </div>
@@ -154,41 +154,43 @@ export function KnowledgeBase({
       {/* Core Memories Section */}
       {(filterCategory === "all" || filterCategory === "memories") && filteredMemories.length > 0 && (
         <div>
-          <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "12px" }}>
-            <Brain size={18} color="#34d399" />
-            <h3 style={{ fontSize: "1.1rem", fontWeight: 700 }}>
-              Personal Memories & Stories ({filteredMemories.length})
+          <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "14px" }}>
+            <Brain size={18} color="var(--pat-radar-green)" />
+            <h3 style={{ fontFamily: "var(--font-mecha)", fontSize: "1.15rem", fontWeight: 700, letterSpacing: "0.02em" }}>
+              PILOT MEMORIES & TELEMETRY ({filteredMemories.length})
             </h3>
           </div>
 
           <div className="cards-grid">
             {filteredMemories.map((m) => (
-              <div key={m.id} className={`memory-card ${!m.enabled ? "disabled" : ""}`}>
-                <div className="card-top">
-                  <span className="category-badge" style={{ background: "rgba(52, 211, 153, 0.12)", color: "#34d399" }}>
+              <div key={m.id} className="memory-card" style={{ opacity: m.enabled ? 1 : 0.5 }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                  <span className="category-badge" style={{ background: "rgba(52, 211, 153, 0.16)", color: "var(--pat-radar-green)", border: "1px solid rgba(52, 211, 153, 0.35)" }}>
                     {m.category}
                   </span>
                   <button
                     onClick={() => onToggleMemory(m.id)}
-                    style={{ background: "transparent", border: "none", cursor: "pointer", display: "flex", alignItems: "center", gap: "4px", fontSize: "0.75rem", color: m.enabled ? "var(--accent-emerald)" : "var(--text-muted)" }}
-                    title={m.enabled ? "Active in AI Prompt" : "Disabled in AI Prompt"}
+                    className="liquid-btn"
+                    style={{ padding: "3px 8px", fontSize: "0.72rem" }}
+                    title={m.enabled ? "Online in AI Prompt" : "Muted in AI Prompt"}
                   >
-                    {m.enabled ? <CheckCircle2 size={15} /> : <XCircle size={15} />}
-                    {m.enabled ? "Active" : "Muted"}
+                    {m.enabled ? <CheckCircle2 size={13} color="var(--pat-radar-green)" /> : <XCircle size={13} />}
+                    <span>{m.enabled ? "Online" : "Muted"}</span>
                   </button>
                 </div>
 
                 <h4 className="card-title">{m.title}</h4>
                 <p className="card-content">{m.content}</p>
 
-                <div className="card-footer" style={{ justifyContent: "flex-end" }}>
+                <div style={{ display: "flex", justifyContent: "flex-end", borderTop: "1px solid rgba(255, 255, 255, 0.08)", paddingTop: "12px" }}>
                   <button
-                    className="msg-action-btn"
+                    className="liquid-btn"
+                    style={{ padding: "4px 10px", fontSize: "0.72rem" }}
                     onClick={() => onDeleteMemory(m.id)}
-                    title="Delete Memory"
+                    title="Erase Memory"
                   >
-                    <Trash2 size={13} />
-                    Delete
+                    <Trash2 size={12} />
+                    Erase
                   </button>
                 </div>
               </div>

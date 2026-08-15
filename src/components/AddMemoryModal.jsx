@@ -4,12 +4,10 @@ import { X, Plus, Brain, FolderGit2 } from "lucide-react";
 export function AddMemoryModal({ isOpen, onClose, onAddMemory, onAddProject }) {
   const [tabType, setTabType] = useState("memory"); // "memory" | "project"
 
-  // Memory form
   const [category, setCategory] = useState("Personal");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
-  // Project form
   const [projTitle, setProjTitle] = useState("");
   const [repoName, setRepoName] = useState("");
   const [language, setLanguage] = useState("JavaScript");
@@ -24,13 +22,8 @@ export function AddMemoryModal({ isOpen, onClose, onAddMemory, onAddProject }) {
     e.preventDefault();
     if (tabType === "memory") {
       if (!title.trim() || !content.trim()) return;
-      onAddMemory({
-        category,
-        title: title.trim(),
-        content: content.trim()
-      });
-      setTitle("");
-      setContent("");
+      onAddMemory({ category, title: title.trim(), content: content.trim() });
+      setTitle(""); setContent("");
     } else {
       if (!projTitle.trim() || !description.trim()) return;
       onAddProject({
@@ -42,12 +35,7 @@ export function AddMemoryModal({ isOpen, onClose, onAddMemory, onAddProject }) {
         demoUrl: demoUrl.trim() || null,
         url: githubUrl.trim() || null
       });
-      setProjTitle("");
-      setRepoName("");
-      setDescription("");
-      setHighlights("");
-      setDemoUrl("");
-      setGithubUrl("");
+      setProjTitle(""); setRepoName(""); setDescription(""); setHighlights(""); setDemoUrl(""); setGithubUrl("");
     }
     onClose();
   };
@@ -57,29 +45,31 @@ export function AddMemoryModal({ isOpen, onClose, onAddMemory, onAddProject }) {
       <div className="modal-card" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
           <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-            <Plus size={18} color="#38bdf8" />
-            <h3 style={{ fontSize: "1.1rem", fontWeight: 700 }}>Add to Knowledge Base</h3>
+            <Plus size={18} color="var(--pat-hud-cyan)" />
+            <h3 style={{ fontFamily: "var(--font-mecha)", fontSize: "1.1rem", fontWeight: 700, letterSpacing: "0.02em" }}>
+              REGISTER ARCHIVE / PILOT MEMORY
+            </h3>
           </div>
-          <button className="btn-icon" onClick={onClose}>
+          <button className="liquid-btn btn-icon-liquid" onClick={onClose}>
             <X size={16} />
           </button>
         </div>
 
-        {/* Tab switch between Memory and Project */}
+        {/* Tab Type Switch */}
         <div style={{ display: "flex", padding: "12px 24px 0 24px", gap: "8px" }}>
           <button
-            className={`nav-tab-btn ${tabType === "memory" ? "active" : ""}`}
+            className={`nav-tab-pill ${tabType === "memory" ? "active" : ""}`}
             onClick={() => setTabType("memory")}
           >
             <Brain size={15} />
-            Add Story / Memory
+            Pilot Memory
           </button>
           <button
-            className={`nav-tab-btn ${tabType === "project" ? "active" : ""}`}
+            className={`nav-tab-pill ${tabType === "project" ? "active" : ""}`}
             onClick={() => setTabType("project")}
           >
             <FolderGit2 size={15} />
-            Add Project / Repo
+            Labor Unit / Project
           </button>
         </div>
 
@@ -89,11 +79,7 @@ export function AddMemoryModal({ isOpen, onClose, onAddMemory, onAddProject }) {
               <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
                 <div className="form-group">
                   <label className="form-label">Category</label>
-                  <select
-                    className="form-input"
-                    value={category}
-                    onChange={(e) => setCategory(e.target.value)}
-                  >
+                  <select className="form-input" value={category} onChange={(e) => setCategory(e.target.value)}>
                     <option value="Personal">Personal Story & Background</option>
                     <option value="Career & Work">Career & Work Experience</option>
                     <option value="Passions">Passions & Hobbies</option>
@@ -152,7 +138,6 @@ export function AddMemoryModal({ isOpen, onClose, onAddMemory, onAddProject }) {
                       onChange={(e) => setRepoName(e.target.value)}
                     />
                   </div>
-
                   <div className="form-group">
                     <label className="form-label">Language / Framework</label>
                     <input
@@ -191,24 +176,11 @@ export function AddMemoryModal({ isOpen, onClose, onAddMemory, onAddProject }) {
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
                   <div className="form-group">
                     <label className="form-label">Live Demo URL (Optional)</label>
-                    <input
-                      type="url"
-                      className="form-input"
-                      placeholder="https://..."
-                      value={demoUrl}
-                      onChange={(e) => setDemoUrl(e.target.value)}
-                    />
+                    <input type="url" className="form-input" placeholder="https://..." value={demoUrl} onChange={(e) => setDemoUrl(e.target.value)} />
                   </div>
-
                   <div className="form-group">
                     <label className="form-label">GitHub URL (Optional)</label>
-                    <input
-                      type="url"
-                      className="form-input"
-                      placeholder="https://github.com/..."
-                      value={githubUrl}
-                      onChange={(e) => setGithubUrl(e.target.value)}
-                    />
+                    <input type="url" className="form-input" placeholder="https://github.com/..." value={githubUrl} onChange={(e) => setGithubUrl(e.target.value)} />
                   </div>
                 </div>
               </div>
@@ -216,12 +188,12 @@ export function AddMemoryModal({ isOpen, onClose, onAddMemory, onAddProject }) {
           </div>
 
           <div className="modal-footer">
-            <button type="button" className="perspective-toggle" onClick={onClose}>
+            <button type="button" className="liquid-btn" onClick={onClose}>
               Cancel
             </button>
-            <button type="submit" className="btn-primary">
+            <button type="submit" className="liquid-btn liquid-btn-amber">
               <Plus size={16} />
-              Save to Agent Memory
+              Save to Archive
             </button>
           </div>
         </form>

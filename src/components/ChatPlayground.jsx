@@ -7,9 +7,9 @@ import {
   Check,
   Sparkles,
   Trash2,
-  ExternalLink,
-  Code2,
-  RefreshCw
+  Radio,
+  RefreshCw,
+  Cpu
 } from "lucide-react";
 import { sendChatMessage, speakText, stopSpeaking } from "../services/aiService";
 
@@ -21,10 +21,10 @@ export function ChatPlayground({ persona, settings }) {
       id: "intro-msg",
       sender: "ai",
       text: isFirstPerson
-        ? `Hey! I'm **${persona.identity.fullName}**'s AI twin. 👋\n\nI can tell you all about my work in **creative web development**, like my **Music Composition Web App**, **Genshin Draft PvP** tool, **Electron desktop workspaces**, or my full-stack projects on Render.\n\nWhat would you like to explore?`
-        : `Hello! I'm the digital twin assistant representing **${persona.identity.fullName}** (@${persona.identity.handle}).\n\nAsk me anything about Ron's GitHub repositories, technical skills, web audio experiments, or development philosophy!`,
+        ? `**SV-2 PILOT COMMS ONLINE.** 📡\n\nHey! I'm **${persona.identity.fullName}**'s AI Digital Twin. I'm calibrated with all my creative engineering archives—from my **Music Composition Web App** (Web Audio synthesis) to **Genshin Draft PvP**, **Electron Desktop Workspaces**, and full-stack platforms on Render.\n\nWhat telemetry or project shall we inspect?`
+        : `**SV-2 COCKPIT SYSTEM INITIALIZED.** 📡\n\nHello! I am the tactical AI Representative representing **${persona.identity.fullName}** (@${persona.identity.handle}).\n\nAsk me anything about Ron's GitHub repositories, technical skills, web audio synthesis engines, or development philosophy!`,
       timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
-      provider: "Ron AI Core"
+      provider: "SV-2 INGRAM NEURAL CORE"
     }
   ]);
 
@@ -36,7 +36,6 @@ export function ChatPlayground({ persona, settings }) {
   const scrollRef = useRef(null);
   const textareaRef = useRef(null);
 
-  // Auto-scroll to bottom on new message
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
@@ -76,7 +75,6 @@ export function ChatPlayground({ persona, settings }) {
 
       setMessages(prev => [...prev, aiMessage]);
 
-      // If voice autoplay is enabled in settings
       if (settings.voiceEnabled) {
         speakText(response.text);
         setSpeakingId(aiMessage.id);
@@ -88,7 +86,7 @@ export function ChatPlayground({ persona, settings }) {
         {
           id: "err-" + Date.now(),
           sender: "ai",
-          text: `Oops! Encountered an issue: ${err.message}`,
+          text: `[COMMS INTERRUPT] Encountered an issue: ${err.message}`,
           timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
         }
       ]);
@@ -127,17 +125,15 @@ export function ChatPlayground({ persona, settings }) {
         id: "reset-msg",
         sender: "ai",
         text: isFirstPerson
-          ? `Chat cleared! What shall we talk about next? 🚀`
-          : `Conversation reset. How can I help you explore Ron's projects?`,
+          ? `Comms buffer cleared. Standing by for new directives! 🚀`
+          : `Conversation reset. Ready to explore Ron's projects and repositories.`,
         timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
-        provider: "Ron AI Core"
+        provider: "SV-2 INGRAM NEURAL CORE"
       }
     ]);
   };
 
-  // Convert basic markdown in messages (bold, links, code) into styled elements
   const renderFormattedText = (text) => {
-    // Process markdown paragraphs
     const paragraphs = text.split("\n\n");
     return paragraphs.map((para, pIdx) => {
       const lines = para.split("\n");
@@ -155,7 +151,6 @@ export function ChatPlayground({ persona, settings }) {
   };
 
   const renderFormattedLine = (line) => {
-    // Basic regex parser for **bold**, `code`, and [links](url)
     const regex = /(\*\*.*?\*\*|`.*?`|\[.*?\]\(.*?\))/g;
     const parts = line.split(regex);
 
@@ -182,31 +177,32 @@ export function ChatPlayground({ persona, settings }) {
   return (
     <div className="chat-container">
       <div className="chat-main">
-        {/* Chat Top Header */}
+        {/* Cockpit HUD Bar */}
         <div className="chat-header-bar">
-          <div className="chat-identity-pill">
-            <span className="status-badge">
-              <span className="status-dot-pulse"></span>
-              {isFirstPerson ? "1st Person Persona Active" : "Representative Mode"}
+          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+            <span className="telemetry-status-pill">
+              <span className="status-mecha-blinker" style={{ position: "static", display: "inline-block" }}></span>
+              {isFirstPerson ? "PILOT COCKPIT // 1ST PERSON" : "REPRESENTATIVE BOT // 3RD PERSON"}
             </span>
-            <span style={{ fontSize: "0.8rem", color: "var(--text-muted)" }}>
-              {settings.provider === "gemini" ? "⚡ Powered by Gemini 1.5" : settings.provider === "openai" ? "⚡ Powered by OpenAI" : "⚡ Intelligent Persona Simulation"}
+            <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.74rem", color: "var(--pat-police-dim)" }}>
+              {settings.provider === "gemini" ? "⚡ GEMINI 1.5 FLASH" : settings.provider === "openai" ? "⚡ OPENAI LLM" : "⚡ OFFLINE INGRAM NEURAL CORE"}
             </span>
           </div>
 
           <div style={{ display: "flex", gap: "8px" }}>
             <button
-              className="msg-action-btn"
+              className="liquid-btn"
+              style={{ padding: "4px 12px", fontSize: "0.74rem" }}
               onClick={handleClearChat}
-              title="Clear Conversation"
+              title="Clear Terminal Comms"
             >
-              <Trash2 size={14} />
-              Clear
+              <Trash2 size={13} />
+              Clear Comms
             </button>
           </div>
         </div>
 
-        {/* Chat Scroll View */}
+        {/* Messages Stream */}
         <div className="chat-scroll-area" ref={scrollRef}>
           {messages.map((msg) => {
             const isAi = msg.sender === "ai";
@@ -220,7 +216,7 @@ export function ChatPlayground({ persona, settings }) {
                       style={{ width: "100%", height: "100%", objectFit: "cover" }}
                     />
                   ) : (
-                    "You"
+                    "YOU"
                   )}
                 </div>
 
@@ -231,24 +227,26 @@ export function ChatPlayground({ persona, settings }) {
 
                   <div className="msg-meta">
                     <span>{msg.timestamp}</span>
-                    {msg.provider && <span>• {msg.provider}</span>}
+                    {msg.provider && <span>// {msg.provider}</span>}
 
                     {isAi && (
-                      <div className="msg-actions" style={{ marginLeft: "auto" }}>
+                      <div className="msg-actions" style={{ marginLeft: "auto", display: "flex", gap: "6px" }}>
                         <button
-                          className="msg-action-btn"
+                          className="liquid-btn"
+                          style={{ padding: "3px 10px", fontSize: "0.72rem" }}
                           onClick={() => handleToggleSpeak(msg.text, msg.id)}
                           title="Listen with Text-to-Speech"
                         >
-                          {speakingId === msg.id ? <VolumeX size={12} color="#38bdf8" /> : <Volume2 size={12} />}
-                          <span>{speakingId === msg.id ? "Stop" : "Listen"}</span>
+                          {speakingId === msg.id ? <VolumeX size={12} color="var(--pat-amber-vest)" /> : <Volume2 size={12} />}
+                          <span>{speakingId === msg.id ? "Stop" : "Audio"}</span>
                         </button>
                         <button
-                          className="msg-action-btn"
+                          className="liquid-btn"
+                          style={{ padding: "3px 10px", fontSize: "0.72rem" }}
                           onClick={() => handleCopy(msg.text, msg.id)}
                           title="Copy message"
                         >
-                          {copiedId === msg.id ? <Check size={12} color="#34d399" /> : <Copy size={12} />}
+                          {copiedId === msg.id ? <Check size={12} color="var(--pat-radar-green)" /> : <Copy size={12} />}
                           <span>{copiedId === msg.id ? "Copied" : "Copy"}</span>
                         </button>
                       </div>
@@ -268,18 +266,18 @@ export function ChatPlayground({ persona, settings }) {
                   style={{ width: "100%", height: "100%", objectFit: "cover" }}
                 />
               </div>
-              <div className="msg-bubble" style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                <RefreshCw size={14} className="animate-spin" style={{ animation: "spin 1s linear infinite" }} />
-                <span>{persona.identity.preferredName} is thinking...</span>
+              <div className="msg-bubble" style={{ display: "flex", alignItems: "center", gap: "10px", fontFamily: "var(--font-mono)", fontSize: "0.85rem", color: "var(--pat-amber-vest)" }}>
+                <RefreshCw size={14} style={{ animation: "spin 1.2s linear infinite" }} />
+                <span>[SV-2 NEURAL SYNC IN PROGRESS...]</span>
               </div>
             </div>
           )}
         </div>
 
-        {/* Quick Sample Prompts Bar */}
+        {/* Quick Question Chips */}
         <div className="quick-prompt-bar">
-          <span style={{ fontSize: "0.74rem", color: "var(--text-muted)", display: "flex", alignItems: "center", gap: "4px" }}>
-            <Sparkles size={12} color="#38bdf8" /> Ask:
+          <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.72rem", color: "var(--pat-amber-vest)", display: "flex", alignItems: "center", gap: "4px" }}>
+            <Radio size={12} /> TELEMETRY:
           </span>
           {persona.samplePrompts?.map((prompt, idx) => (
             <button
@@ -292,23 +290,24 @@ export function ChatPlayground({ persona, settings }) {
           ))}
         </div>
 
-        {/* Input Bar */}
+        {/* Input Capsule Bar */}
         <div className="chat-input-area">
           <div className="chat-input-box">
             <textarea
               ref={textareaRef}
               className="chat-textarea"
               rows={1}
-              placeholder={`Ask ${persona.identity.preferredName} anything about his projects, coding stack, or background...`}
+              placeholder={`Transmit message to ${persona.identity.preferredName}'s AI Twin...`}
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
               onKeyDown={handleKeyDown}
             />
             <button
-              className="btn-send"
+              className="liquid-btn liquid-btn-amber"
+              style={{ width: "42px", height: "42px", borderRadius: "9999px", padding: "0" }}
               onClick={() => handleSendMessage()}
               disabled={!inputText.trim() || isLoading}
-              title="Send Message"
+              title="Transmit Message"
             >
               <Send size={16} />
             </button>
