@@ -168,10 +168,20 @@ export function ProjectsSection() {
             <h3 className="card-title">{repo.displayName || repo.name}</h3>
             <p className="card-content">{repo.description}</p>
 
+            {/* How It Works Architecture breakdown */}
+            {repo.howItWorks && (
+              <div className="project-how-it-works">
+                <span style={{ color: "var(--pat-amber-vest)", display: "block", marginBottom: "3px", fontSize: "0.74rem", fontWeight: 700, letterSpacing: "0.04em", fontFamily: "var(--font-mono)", textTransform: "uppercase" }}>
+                  ⚡ How it works:
+                </span>
+                <span>{repo.howItWorks}</span>
+              </div>
+            )}
+
             {/* Highlights if available */}
             {repo.highlights && (
               <div className="project-highlights">
-                ⚙ {repo.highlights}
+                ⚙ <strong>Tech:</strong> {repo.highlights}
               </div>
             )}
 

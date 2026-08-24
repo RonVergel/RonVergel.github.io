@@ -1361,13 +1361,24 @@ body::before {
   gap: 14px;
 }
 
+.project-how-it-works {
+  font-size: 0.83rem;
+  color: #cbd5e1;
+  background: rgba(8, 14, 22, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-left: 3px solid var(--pat-amber-vest);
+  border-radius: 6px;
+  padding: 10px 12px;
+  line-height: 1.6;
+}
+
 .project-highlights {
   font-family: var(--font-mono);
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   color: var(--pat-hud-cyan);
   background: rgba(4, 8, 14, 0.5);
   border: 1px solid rgba(56, 189, 248, 0.18);
-  border-radius: 10px;
+  border-radius: 6px;
   padding: 8px 12px;
   line-height: 1.5;
 }
