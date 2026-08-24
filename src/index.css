@@ -42,11 +42,11 @@
   --font-mecha: 'Space Grotesk', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
-  --radius-pill: 9999px;
-  --radius-dock: 32px;
-  --radius-card: 20px;
-  --radius-sm: 10px;
-  --radius-xs: 6px;
+  --radius-pill: 6px;
+  --radius-dock: 8px;
+  --radius-card: 8px;
+  --radius-sm: 5px;
+  --radius-xs: 3px;
 }
 
 *, *::before, *::after {
@@ -265,7 +265,7 @@ body::before {
   position: relative;
   width: 46px;
   height: 46px;
-  border-radius: var(--radius-pill);
+  border-radius: 12px;
   padding: 2px;
   background: linear-gradient(135deg, var(--pat-amber-vest) 0%, rgba(255, 255, 255, 0.4) 50%, var(--pat-hud-cyan) 100%);
   box-shadow: 0 0 16px var(--pat-amber-glow);
@@ -274,20 +274,20 @@ body::before {
 .avatar-img {
   width: 100%;
   height: 100%;
-  border-radius: var(--radius-pill);
+  border-radius: 10px;
   object-fit: cover;
   display: block;
 }
 
 .status-mecha-blinker {
   position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 13px;
-  height: 13px;
+  bottom: -2px;
+  right: -2px;
+  width: 12px;
+  height: 12px;
   background: var(--pat-radar-green);
   border: 2px solid #090e17;
-  border-radius: var(--radius-pill);
+  border-radius: 3px;
   box-shadow: 0 0 8px var(--pat-radar-green);
   animation: radarBlink 2.2s infinite;
 }
@@ -1025,7 +1025,7 @@ body::before {
   backdrop-filter: var(--liquid-blur);
   -webkit-backdrop-filter: var(--liquid-blur);
   border: 1px solid rgba(30, 215, 96, 0.4);
-  border-radius: 26px;
+  border-radius: 10px;
   box-shadow: inset 0 1.5px 1px rgba(255, 255, 255, 0.4), 0 24px 60px rgba(0, 0, 0, 0.8), 0 0 35px rgba(30, 215, 96, 0.2);
   z-index: 95;
   overflow: hidden;
@@ -1076,7 +1076,7 @@ body::before {
   background: linear-gradient(180deg, rgba(24, 38, 58, 0.95) 0%, rgba(10, 16, 26, 0.98) 100%);
   backdrop-filter: var(--liquid-blur);
   border: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: 28px;
+  border-radius: 10px;
   max-width: 600px;
   width: 100%;
   box-shadow: inset 0 2px 2px rgba(255, 255, 255, 0.45), 0 30px 80px rgba(0, 0, 0, 0.85);

@@ -99,7 +99,7 @@ export function ProjectsSection() {
               {lang !== "All" && (
                 <span
                   style={{
-                    width: 9, height: 9, borderRadius: "50%",
+                    width: 8, height: 8, borderRadius: "2px",
                     background: langColor(lang), display: "inline-block", flexShrink: 0
                   }}
                 />

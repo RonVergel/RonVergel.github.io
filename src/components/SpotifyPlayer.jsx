@@ -10,12 +10,12 @@ export function SpotifyPlayer({ isOpen, onToggle }) {
       <button
         className="spotify-floating-btn"
         onClick={onToggle}
-        title={isOpen ? "Close Cockpit Audio" : "Open Ron's Spotify Coding Soundtrack"}
+        title={isOpen ? "Close Audio" : "Open Ron's Spotify Coding Soundtrack"}
       >
         <div className="spotify-icon-badge">
-          <Disc3 size={18} className={isOpen ? "spin-music" : ""} color="#1ed760" />
+          <Disc3 size={16} className={isOpen ? "spin-music" : ""} color="#1ed760" />
         </div>
-        <span className="spotify-btn-label">SV-2 SOUNDTRACK</span>
+        <span className="spotify-btn-label">CODING SOUNDTRACK</span>
         <div className="equalizer-bars">
           <span className="bar bar-1"></span>
           <span className="bar bar-2"></span>
@@ -30,7 +30,7 @@ export function SpotifyPlayer({ isOpen, onToggle }) {
             <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
               <Radio size={14} color="#1ed760" />
               <span style={{ fontFamily: "var(--font-mecha)", fontSize: "0.85rem", fontWeight: 700, color: "var(--pat-police-white)" }}>
-                RON'S COCKPIT SOUNDTRACK
+                RON'S CODING PLAYLIST
               </span>
             </div>
 
@@ -68,7 +68,7 @@ export function SpotifyPlayer({ isOpen, onToggle }) {
             <div className="spotify-iframe-container">
               <iframe
                 data-testid="embed-iframe"
-                style={{ borderRadius: "16px", border: "none" }}
+                style={{ borderRadius: "8px", border: "none" }}
                 src="https://open.spotify.com/embed/playlist/1dqCUBrb8BQpdtdxpTwlVc?utm_source=generator&theme=0&si=8d411131797642b2"
                 width="100%"
                 height="352"
