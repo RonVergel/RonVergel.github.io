@@ -9,6 +9,11 @@ import {
 const LANG_COLORS = {
   JavaScript: "#f7df1e",
   TypeScript: "#3178c6",
+  "React Native / JavaScript": "#38bdf8",
+  "React Native / TypeScript": "#38bdf8",
+  "Electron / JavaScript": "#00d8ff",
+  "JavaScript / Web Audio": "#34d399",
+  "HTML / JavaScript / CSS": "#f97316",
   Python:     "#3776ab",
   "C#":       "#9b4f96",
   HTML:       "#e34f26",
@@ -21,6 +26,7 @@ function langColor(lang) {
 }
 
 function timeAgo(dateStr) {
+  if (!dateStr) return "";
   const diff = (Date.now() - new Date(dateStr)) / 1000;
   if (diff < 3600) return `${Math.round(diff / 60)}m ago`;
   if (diff < 86400) return `${Math.round(diff / 3600)}h ago`;
@@ -41,8 +47,10 @@ export function ProjectsSection() {
     const matchSearch =
       !q ||
       r.name.toLowerCase().includes(q) ||
-      r.description.toLowerCase().includes(q) ||
-      (r.language || "").toLowerCase().includes(q);
+      (r.displayName && r.displayName.toLowerCase().includes(q)) ||
+      (r.description && r.description.toLowerCase().includes(q)) ||
+      (r.language || "").toLowerCase().includes(q) ||
+      (r.topics && r.topics.some(t => t.toLowerCase().includes(q)));
     const matchLang = langFilter === "All" || r.language === langFilter;
     return matchSearch && matchLang;
   });
@@ -54,7 +62,7 @@ export function ProjectsSection() {
         <h2>
           PROJECTS{" "}
           <span style={{ color: "var(--pat-police-dim)", fontWeight: 400 }}>
-            // GITHUB LIVE FEED
+            // GITHUB LIVE FEED & THESIS
           </span>
         </h2>
         {!loading && !error && (
@@ -67,11 +75,11 @@ export function ProjectsSection() {
       {/* Live indicator */}
       <div style={{ marginBottom: "20px", display: "flex", alignItems: "center", gap: "8px", fontFamily: "var(--font-mono)", fontSize: "0.78rem", color: "var(--pat-police-dim)" }}>
         <span className="status-mecha-blinker" style={{ position: "static", display: "inline-block" }} />
-        Auto-synced from{" "}
+        Live feed from{" "}
         <a href="https://github.com/RonVergel" target="_blank" rel="noreferrer" style={{ color: "var(--pat-hud-cyan)", textDecoration: "none" }}>
           github.com/RonVergel
         </a>
-        {" "}— pushes new projects automatically
+        {" "}— automatically detects new repositories & thesis contributions
       </div>
 
       {/* Search + Filter Bar */}
@@ -80,7 +88,7 @@ export function ProjectsSection() {
           <Search size={15} color="var(--pat-amber-vest)" />
           <input
             type="text"
-            placeholder="Search projects..."
+            placeholder="Search projects, stack, or keywords..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className="search-input"
@@ -122,10 +130,10 @@ export function ProjectsSection() {
         <div className="projects-state">
           <AlertCircle size={24} color="var(--pat-warning-rose)" />
           <p style={{ color: "var(--pat-warning-rose)" }}>
-            GitHub API error: {error}
+            GitHub API notice: {error}
           </p>
           <p style={{ fontSize: "0.8rem", color: "var(--pat-police-dim)" }}>
-            Showing cached data if available.
+            Displaying repository archives.
           </p>
         </div>
       )}
@@ -140,17 +148,24 @@ export function ProjectsSection() {
       <div className="cards-grid">
         {filtered.map((repo) => (
           <div key={repo.id} className="memory-card project-card">
-            {/* Language dot accent top */}
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-              <span className="category-badge" style={{ background: `${langColor(repo.language)}22`, color: langColor(repo.language), border: `1px solid ${langColor(repo.language)}55` }}>
-                {repo.emoji ? `${repo.emoji} ` : ""}{repo.language}
-              </span>
+            {/* Language & Badge Top */}
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "6px" }}>
+              <div style={{ display: "flex", gap: "6px", alignItems: "center", flexWrap: "wrap" }}>
+                <span className="category-badge" style={{ background: `${langColor(repo.language)}22`, color: langColor(repo.language), border: `1px solid ${langColor(repo.language)}55` }}>
+                  {repo.emoji ? `${repo.emoji} ` : ""}{repo.language}
+                </span>
+                {repo.badge && (
+                  <span className="category-badge" style={{ background: "rgba(255, 140, 33, 0.18)", color: "var(--pat-amber-vest)", border: "1px solid rgba(255, 140, 33, 0.45)" }}>
+                    ★ {repo.badge}
+                  </span>
+                )}
+              </div>
               <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.7rem", color: "var(--pat-police-dim)" }}>
                 {timeAgo(repo.updatedAt)}
               </span>
             </div>
 
-            <h3 className="card-title">{repo.name}</h3>
+            <h3 className="card-title">{repo.displayName || repo.name}</h3>
             <p className="card-content">{repo.description}</p>
 
             {/* Highlights if available */}
