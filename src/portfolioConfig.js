@@ -138,12 +138,35 @@ export const PORTFOLIO_CONFIG = {
       language: "Python / Jupyter",
     },
 
+    "RonVergel.github.io": {
+      displayName: "Ron Vergel Developer Portfolio",
+      emoji: "🌐",
+      badge: "Live Portfolio",
+      description: "This modern personal portfolio featuring live GitHub API auto-sync, embedded Spotify soundtrack player, and a high-tech liquid glass user interface.",
+      howItWorks: "Built with React 19 and Vite. Automatically calls the GitHub REST API on page load to fetch all public repositories, merges custom architecture metadata, provides instant search & language filtering, and deploys to GitHub Pages via automated CI/CD.",
+      demoUrl: "https://ronvergel.github.io/",
+      highlights: "React 19, Vite, GitHub REST API live sync, Spotify embed, Liquid Glass CSS design system.",
+      language: "React / JavaScript",
+    },
+
+    portfolio: {
+      displayName: "Ron Vergel Developer Portfolio",
+      emoji: "🌐",
+      badge: "Live Portfolio",
+      description: "This modern personal portfolio featuring live GitHub API auto-sync, embedded Spotify soundtrack player, and a high-tech liquid glass user interface.",
+      howItWorks: "Built with React 19 and Vite. Automatically calls the GitHub REST API on page load to fetch all public repositories, merges custom architecture metadata, provides instant search & language filtering, and deploys to GitHub Pages via automated CI/CD.",
+      demoUrl: "https://ronvergel.github.io/",
+      highlights: "React 19, Vite, GitHub REST API live sync, Spotify embed, Liquid Glass CSS design system.",
+      language: "React / JavaScript",
+    },
+
     myAi: {
       displayName: "Ron Vergel Developer Portfolio",
       emoji: "🌐",
       badge: "Live Portfolio",
       description: "This modern personal portfolio featuring live GitHub API auto-sync, embedded Spotify soundtrack player, and a high-tech liquid glass user interface.",
       howItWorks: "Built with React 19 and Vite. Automatically calls the GitHub REST API on page load to fetch all public repositories, merges custom architecture metadata, provides instant search & language filtering, and deploys to GitHub Pages via automated CI/CD.",
+      demoUrl: "https://ronvergel.github.io/",
       highlights: "React 19, Vite, GitHub REST API live sync, Spotify embed, Liquid Glass CSS design system.",
       language: "React / JavaScript",
     },

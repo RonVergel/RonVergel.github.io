@@ -1,16 +1,64 @@
-# React + Vite
+# 🌐 Ron Vergel Luzon — Developer Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Live Site: **[https://ronvergel.github.io](https://ronvergel.github.io)**
 
-Currently, two official plugins are available:
+Personal developer portfolio featuring live GitHub API auto-sync, an embedded Spotify soundtrack player, and a sleek high-tech liquid glass UI inspired by modern engineering aesthetics.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## ✨ Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Live GitHub API Auto-Sync**: Queries the GitHub REST API on page load to dynamically display repositories, live star counts, forks, and latest update timestamps.
+- **Architectural Breakdowns**: Includes clear "What it is" and "How it works" breakdowns for major engineering projects (mobile thesis capstone, Web Audio synth, Python analytics pipelines, desktop OOP systems).
+- **Interactive Search & Tag Filtering**: Instant search across projects, tech stacks, and topics with custom multi-language filtering badges.
+- **Embedded Spotify Soundtrack**: Floating ambient background player loaded with Ron's coding soundtrack playlist.
+- **Sleek Liquid Glass & Mecha HUD Design**: Crisp typography, high-contrast dark palette, glowing accents, and fluid hover animations.
+- **Automated CI/CD**: Seamless GitHub Actions workflow deploying directly to GitHub Pages on every push to `main`.
 
-## Expanding the Oxlint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## 🛠️ Tech Stack
+
+- **Framework**: [React 19](https://react.dev/) + [Vite](https://vite.dev/)
+- **Styling**: Vanilla CSS (CSS Variables, Glassmorphism, Micro-animations)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Data Source**: GitHub REST API
+- **Deployment**: GitHub Pages via GitHub Actions
+
+---
+
+## 🚀 Local Development
+
+```bash
+# Clone the repository
+git clone https://github.com/RonVergel/RonVergel.github.io.git
+
+# Navigate into the project folder
+cd RonVergel.github.io
+
+# Install dependencies
+npm install
+
+# Start local Vite development server
+npm run dev
+```
+
+---
+
+## 📦 Production Build
+
+```bash
+# Build production bundle
+npm run build
+
+# Preview production build locally
+npm run preview
+```
+
+---
+
+## 📬 Contact & Links
+
+- **Portfolio**: [https://ronvergel.github.io](https://ronvergel.github.io)
+- **GitHub**: [@RonVergel](https://github.com/RonVergel)
+- **Email**: ronvergel999@gmail.com

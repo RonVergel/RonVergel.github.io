@@ -1,9 +1,9 @@
 {
-  "name": "myai",
+  "name": "ronvergel-portfolio",
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "homepage": "https://RonVergel.github.io/myAi",
+  "homepage": "https://RonVergel.github.io",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
