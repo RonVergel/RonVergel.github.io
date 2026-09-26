@@ -1,18 +1,25 @@
 import React, { useState } from "react";
 import { PORTFOLIO_CONFIG } from "../portfolioConfig";
-import { GithubIcon } from "./GithubIcon";
-import { Menu, X } from "lucide-react";
+import { Sparkles, Music } from "lucide-react";
+import { LiquidGlassControl } from "./LiquidGlassControl";
 
 const NAV_LINKS = [
-  { href: "#about",    label: "About" },
-  { href: "#skills",   label: "Skills" },
-  { href: "#projects", label: "Projects" },
-  { href: "#contact",  label: "Contact" },
+  { href: "#about",           label: "About" },
+  { href: "#skills",          label: "Skills" },
+  { href: "#certifications",  label: "Certs" },
+  { href: "#projects",        label: "Projects" },
+  { href: "#contact",         label: "Contact" },
 ];
 
-export function SiteNav({ onToggleSpotify, isSpotifyOpen }) {
-  const [menuOpen, setMenuOpen] = useState(false);
-
+export function SiteNav({
+  onToggleSpotify,
+  isSpotifyOpen,
+  isGlassOpen,
+  onToggleGlass,
+  glassIntensity,
+  onGlassIntensityChange,
+  onResetGlass
+}) {
   return (
     <div className="navbar-container-wrapper">
       <header className="navbar-dock">
@@ -42,16 +49,38 @@ export function SiteNav({ onToggleSpotify, isSpotifyOpen }) {
           ))}
         </nav>
 
-        {/* Spotify Toggle */}
-        <div className="navbar-actions">
+        {/* Action Controls */}
+        <div className="navbar-actions" style={{ position: "relative" }}>
+          {/* Liquid Glass Intensity Slider Toggle */}
+          <button
+            className={`liquid-btn ${isGlassOpen ? "liquid-btn-cyan" : ""}`}
+            onClick={onToggleGlass}
+            style={{ padding: "6px 14px", fontSize: "0.8rem" }}
+            title="Adjust Liquid Glass Blur, Shimmer & Specular Intensity"
+          >
+            <Sparkles size={14} color={isGlassOpen ? "#fff" : "var(--pat-hud-cyan)"} />
+            <span>Glass: {glassIntensity}%</span>
+          </button>
+
+          {/* Spotify Toggle */}
           <button
             className={`liquid-btn ${isSpotifyOpen ? "liquid-btn-amber" : ""}`}
             onClick={onToggleSpotify}
             style={{ padding: "6px 14px", fontSize: "0.8rem" }}
             title="Toggle Coding Soundtrack"
           >
-            🎵 <span>Soundtrack</span>
+            <Music size={14} color={isSpotifyOpen ? "#fff" : "#1ed760"} />
+            <span>Soundtrack</span>
           </button>
+
+          {/* Liquid Glass Tuner Popover */}
+          <LiquidGlassControl
+            isOpen={isGlassOpen}
+            onClose={onToggleGlass}
+            intensity={glassIntensity}
+            onIntensityChange={onGlassIntensityChange}
+            onReset={onResetGlass}
+          />
         </div>
       </header>
     </div>
