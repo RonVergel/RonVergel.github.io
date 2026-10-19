@@ -144,7 +144,7 @@ export function CertificationsSection() {
           <button
             key={cert.id}
             id={`cert-card-${cert.id}`}
-            className="cert-card liquid-gl-surface liquid-gl-card"
+            className="cert-card"
             onClick={() => openLightbox(idx)}
             style={{ "--cert-color": cert.color, "--cert-glow": cert.glow }}
           >
@@ -190,7 +190,7 @@ export function CertificationsSection() {
       {/* Lightbox */}
       {lightbox !== null && (
         <div className="cert-lightbox-backdrop" onClick={onBackdropClick}>
-          <div className="cert-lightbox-card liquid-gl-surface liquid-gl-modal">
+          <div className="cert-lightbox-card">
             {/* Header */}
             <div className="cert-lightbox-header">
               <div style={{ display: "flex", alignItems: "center", gap: 10 }}>

@@ -22,7 +22,7 @@ export function SiteNav({
 }) {
   return (
     <div className="navbar-container-wrapper">
-      <header className="navbar-dock liquid-gl-surface liquid-gl-nav">
+      <header className="navbar-dock">
         {/* Brand */}
         <div className="navbar-brand">
           <div className="avatar-liquid-frame" style={{ width: 40, height: 40, flexShrink: 0 }}>

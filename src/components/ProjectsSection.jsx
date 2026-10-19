@@ -147,7 +147,7 @@ export function ProjectsSection() {
 
       <div className="cards-grid">
         {filtered.map((repo) => (
-          <div key={repo.id} className="memory-card project-card liquid-gl-surface liquid-gl-card">
+          <div key={repo.id} className="memory-card project-card">
             {/* Language & Badge Top */}
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "6px" }}>
               <div style={{ display: "flex", gap: "6px", alignItems: "center", flexWrap: "wrap" }}>

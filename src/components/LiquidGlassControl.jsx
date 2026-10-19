@@ -20,7 +20,7 @@ export function LiquidGlassControl({
   const currentBlur = Math.round(intensity * 0.36);
 
   return (
-    <div className="glass-tuner-popover liquid-gl-surface liquid-gl-modal">
+    <div className="glass-tuner-popover">
       <div className="glass-tuner-header">
         <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
           <Sparkles size={15} color="var(--pat-hud-cyan)" />

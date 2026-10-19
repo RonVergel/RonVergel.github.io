@@ -8,43 +8,11 @@ import { ContactSection } from "./components/ContactSection";
 import { SpotifyPlayer } from "./components/SpotifyPlayer";
 import { SiteFooter } from "./components/SiteFooter";
 import { useLiquidGlass } from "./hooks/useLiquidGlass";
-import { useLiquidGL } from "./hooks/useLiquidGL";
 
 export function Portfolio() {
   const [isSpotifyOpen, setIsSpotifyOpen] = useState(false);
   const [isGlassOpen, setIsGlassOpen] = useState(false);
   const { intensity, setIntensity, resetIntensity } = useLiquidGlass();
-
-  // Attach WebGPU/WebGL liquidGL shaders to navigation bar
-  useLiquidGL({
-    target: ".liquid-gl-nav",
-    intensity,
-    zIndex: 50,
-    tilt: true,
-    interaction: "fluid",
-    deps: [isGlassOpen],
-  });
-
-  // Attach WebGPU/WebGL liquidGL shaders to portfolio feature cards
-  useLiquidGL({
-    target: ".liquid-gl-card",
-    intensity,
-    zIndex: 5,
-    tilt: true,
-    interaction: "fluid",
-    deps: [],
-  });
-
-  // Attach WebGPU/WebGL liquidGL shaders to tuner popover modal when open
-  useLiquidGL({
-    target: ".liquid-gl-modal",
-    intensity,
-    zIndex: 100,
-    tilt: false,
-    interaction: "fluid",
-    enabled: isGlassOpen,
-    deps: [isGlassOpen],
-  });
 
   return (
     <div className="portfolio-root">
