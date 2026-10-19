@@ -241,6 +241,21 @@ body::before {
 }
 
 /* ==========================================================================
+   LiquidGL WebGPU / WebGL Shader Surface Layering
+   ========================================================================== */
+
+.liquid-gl-surface {
+  position: relative;
+}
+
+/* Ensure all interactive DOM children stay clickable and operable above shader canvas */
+.liquid-gl-surface > * {
+  position: relative;
+  z-index: 2;
+  pointer-events: auto;
+}
+
+/* ==========================================================================
    Patlabor Liquid Glass Navbar Dock
    ========================================================================== */
 
@@ -1146,7 +1161,7 @@ body::before {
 }
 
 /* ==========================================================================
-   Portfolio Layout — Scrollable single-page
+   Portfolio Layout: Scrollable single-page
    ========================================================================== */
 
 .portfolio-root {

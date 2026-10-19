@@ -1,5 +1,5 @@
 import React from "react";
-import { Sparkles, Sliders, RotateCcw, X, Eye, Zap, Layers } from "lucide-react";
+import { Sparkles, RotateCcw, X } from "lucide-react";
 
 export function LiquidGlassControl({
   isOpen,
@@ -11,17 +11,16 @@ export function LiquidGlassControl({
   if (!isOpen) return null;
 
   const presets = [
-    { label: "Matte", value: 0, desc: "0% — Flat, solid dark interface" },
-    { label: "Subtle", value: 35, desc: "35% — Light frosted sheen" },
-    { label: "Liquid", value: 70, desc: "70% — Default VisionOS glass" },
-    { label: "Ultra", value: 100, desc: "100% — Maximum refractive shine" },
+    { label: "Matte", value: 0, desc: "0%: Flat, solid dark interface" },
+    { label: "Subtle", value: 35, desc: "35%: Light frosted sheen" },
+    { label: "Liquid", value: 70, desc: "70%: Default VisionOS glass" },
+    { label: "Ultra", value: 100, desc: "100%: Maximum refractive shine" },
   ];
 
   const currentBlur = Math.round(intensity * 0.36);
-  const currentSaturate = Math.round(100 + intensity * 1.2);
 
   return (
-    <div className="glass-tuner-popover">
+    <div className="glass-tuner-popover liquid-gl-surface liquid-gl-modal">
       <div className="glass-tuner-header">
         <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
           <Sparkles size={15} color="var(--pat-hud-cyan)" />
@@ -104,15 +103,27 @@ export function LiquidGlassControl({
           </div>
         </div>
 
-        {/* Live Telemetry Metrics */}
+        {/* Live LiquidGL Telemetry Metrics */}
         <div className="glass-metrics-grid">
+          <div className="glass-metric-chip">
+            <span className="metric-label">Pipeline</span>
+            <strong className="metric-value">WebGPU / GL</strong>
+          </div>
+          <div className="glass-metric-chip">
+            <span className="metric-label">Refraction</span>
+            <strong className="metric-value">{(intensity * 0.00032).toFixed(3)}</strong>
+          </div>
+          <div className="glass-metric-chip">
+            <span className="metric-label">Aberration</span>
+            <strong className="metric-value">{(intensity * 0.00022).toFixed(3)}</strong>
+          </div>
+          <div className="glass-metric-chip">
+            <span className="metric-label">Fluid Physics</span>
+            <strong className="metric-value">{intensity > 10 ? "Active" : "Off"}</strong>
+          </div>
           <div className="glass-metric-chip">
             <span className="metric-label">Blur Radius</span>
             <strong className="metric-value">{currentBlur}px</strong>
-          </div>
-          <div className="glass-metric-chip">
-            <span className="metric-label">Saturation</span>
-            <strong className="metric-value">{currentSaturate}%</strong>
           </div>
           <div className="glass-metric-chip">
             <span className="metric-label">Specular Glare</span>

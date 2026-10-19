@@ -1,10 +1,10 @@
-// Central config — edit this file to update your portfolio info
+// Central config: edit this file to update your portfolio info
 export const PORTFOLIO_CONFIG = {
   name: "Ron Vergel Luzon",
   handle: "RonVergel",
   preferredName: "Ron",
   tagline: "Full-Stack Developer & Creative Web Creator",
-  bio: "Hey! I'm Ron — a passionate developer who loves building creative web apps, mobile solutions, interactive audio-visual tools, game systems, and desktop productivity software. I specialize in full-stack JavaScript, React, React Native, and Web Audio, with a knack for making things feel snappy, intuitive, and alive.",
+  bio: "Hey! I'm Ron, a passionate developer who loves building creative web apps, mobile solutions, interactive audio-visual tools, game systems, and desktop productivity software. I specialize in full-stack JavaScript, React, React Native, and Web Audio, with a knack for making things feel snappy, intuitive, and alive.",
   email: "ronvergel999@gmail.com",
   location: "Philippines 🇵🇭",
   githubUrl: "https://github.com/RonVergel",
@@ -37,7 +37,7 @@ export const PORTFOLIO_CONFIG = {
   // Comprehensive metadata & clear explanations of what each project is and how it works
   projectMeta: {
     capstone_1: {
-      displayName: "Pabukid — Eco-Tourism Mobile & Web Platform",
+      displayName: "Pabukid: Eco-Tourism Mobile & Web Platform",
       emoji: "🎓",
       badge: "Thesis Capstone (Co-Author)",
       description: "An undergraduate thesis capstone project creating a digital eco-tourism and agricultural booking platform for local outdoor destinations. It connects travelers with eco-farm trails and rural homestay bookings.",

@@ -70,7 +70,7 @@ export function HeroSection() {
           </div>
         </div>
 
-        {/* Live Metrics Grid — Apple Liquid Glass Trading Dashboard style */}
+        {/* Live Metrics Grid: Liquid Glass Dashboard style */}
         <div className="hero-metrics-bar">
           <div className="hero-stat-card">
             <div className="hero-stat-icon" style={{ background: "rgba(56,189,248,0.15)", color: "var(--pat-hud-cyan)" }}>

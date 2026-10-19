@@ -5,7 +5,7 @@ const CERTS = [
   {
     id: "cybersecurity",
     title: "Cybersecurity",
-    issuer: "Certiport — IT Specialist",
+    issuer: "Certiport: IT Specialist",
     date: "March 13, 2026",
     code: "yuyC-uT27",
     color: "var(--pat-warning-rose)",
@@ -17,7 +17,7 @@ const CERTS = [
   {
     id: "databases",
     title: "Databases",
-    issuer: "Certiport — IT Specialist",
+    issuer: "Certiport: IT Specialist",
     date: "2024",
     color: "var(--pat-hud-cyan)",
     glow: "rgba(56, 189, 248, 0.35)",
@@ -28,7 +28,7 @@ const CERTS = [
   {
     id: "htmlcss",
     title: "HTML & CSS",
-    issuer: "Certiport — IT Specialist",
+    issuer: "Certiport: IT Specialist",
     date: "2024",
     color: "#f97316",
     glow: "rgba(249, 115, 22, 0.35)",
@@ -39,7 +39,7 @@ const CERTS = [
   {
     id: "java",
     title: "Java",
-    issuer: "Certiport — IT Specialist",
+    issuer: "Certiport: IT Specialist",
     date: "2023",
     color: "#c084fc",
     glow: "rgba(192, 132, 252, 0.35)",
@@ -50,7 +50,7 @@ const CERTS = [
   {
     id: "networksecurity",
     title: "Network Security",
-    issuer: "Certiport — IT Specialist",
+    issuer: "Certiport: IT Specialist",
     date: "2025",
     color: "var(--pat-radar-green)",
     glow: "rgba(52, 211, 153, 0.35)",
@@ -61,7 +61,7 @@ const CERTS = [
   {
     id: "networking",
     title: "Networking",
-    issuer: "Certiport — IT Specialist",
+    issuer: "Certiport: IT Specialist",
     date: "2025",
     color: "var(--pat-amber-vest)",
     glow: "rgba(255, 140, 33, 0.35)",
@@ -135,7 +135,7 @@ export function CertificationsSection() {
           className="status-mecha-blinker"
           style={{ position: "static", display: "inline-block" }}
         />
-        Verified IT Specialist certifications — click any card to view the full certificate
+        Verified IT Specialist certifications (click any card to view the full certificate)
       </div>
 
       {/* Cards Grid */}
@@ -144,7 +144,7 @@ export function CertificationsSection() {
           <button
             key={cert.id}
             id={`cert-card-${cert.id}`}
-            className="cert-card"
+            className="cert-card liquid-gl-surface liquid-gl-card"
             onClick={() => openLightbox(idx)}
             style={{ "--cert-color": cert.color, "--cert-glow": cert.glow }}
           >
@@ -190,7 +190,7 @@ export function CertificationsSection() {
       {/* Lightbox */}
       {lightbox !== null && (
         <div className="cert-lightbox-backdrop" onClick={onBackdropClick}>
-          <div className="cert-lightbox-card">
+          <div className="cert-lightbox-card liquid-gl-surface liquid-gl-modal">
             {/* Header */}
             <div className="cert-lightbox-header">
               <div style={{ display: "flex", alignItems: "center", gap: 10 }}>

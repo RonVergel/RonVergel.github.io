@@ -32,7 +32,7 @@ function generateOfflineResponse(userMessage, persona, history = []) {
   // 3. Genshin Draft PvP
   if (lower.includes("genshin") || lower.includes("pvp") || lower.includes("draft") || lower.includes("game") || lower.includes("gaming")) {
     if (isFirst) {
-      return `Oh, **Genshin Draft PvP**! ⚔️ That project was born from my love for tactical games and Genshin Impact.\n\nI wanted a way for players to run draft tournaments—picking teams, banning counters, and strategizing character synergies in real-time. I built the draft state machine and character stat mechanics in JavaScript so matches feel competitive and dynamic. ${emoji ? "🎮🔥" : ""}\n\nDo you play Genshin or enjoy drafting systems?`;
+      return `Oh, **Genshin Draft PvP**! ⚔️ That project was born from my love for tactical games and Genshin Impact.\n\nI wanted a way for players to run draft tournaments: picking teams, banning counters, and strategizing character synergies in real-time. I built the draft state machine and character stat mechanics in JavaScript so matches feel competitive and dynamic. ${emoji ? "🎮🔥" : ""}\n\nDo you play Genshin or enjoy drafting systems?`;
     } else {
       return `Ron built **genshindraftpvp** out of his enthusiasm for strategic gaming and Genshin Impact! ⚔️\n\nIt provides an interactive draft board where players take turns picking characters, banning counters, and testing team synergy.`;
     }
@@ -69,7 +69,7 @@ function generateOfflineResponse(userMessage, persona, history = []) {
   // 7. Real Estate / Booking / Academic IT Projects
   if (lower.includes("real estate") || lower.includes("it15") || lower.includes("booking") || lower.includes("caesar") || lower.includes("render")) {
     if (isFirst) {
-      return `For full-stack platforms, I built **IT15 Real Estate** (deployed on Render) and **ronvergelprojbooking**! 🏡\n\nThese platforms handle real-time listings, amenity filters, and appointment bookings with structured backend routing. Also, for a fun cryptography side-project, check out **caesarmontano**—a Caesar cipher encoder/decoder named with a little classic wordplay! ${emoji ? "😄" : ""}`;
+      return `For full-stack platforms, I built **IT15 Real Estate** (deployed on Render) and **ronvergelprojbooking**! 🏡\n\nThese platforms handle real-time listings, amenity filters, and appointment bookings with structured backend routing. Also, for a fun cryptography side-project, check out **caesarmontano**, a Caesar cipher encoder/decoder named with a little classic wordplay! ${emoji ? "😄" : ""}`;
     } else {
       return `Ron built the **IT15 Real Estate** web application (deployed on Render) and booking platforms to handle complex property catalogs, search filters, and scheduling.`;
     }

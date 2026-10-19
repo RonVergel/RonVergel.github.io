@@ -79,7 +79,7 @@ export function ProjectsSection() {
         <a href="https://github.com/RonVergel" target="_blank" rel="noreferrer" style={{ color: "var(--pat-hud-cyan)", textDecoration: "none" }}>
           github.com/RonVergel
         </a>
-        {" "}— automatically detects new repositories & thesis contributions
+        {" "}(automatically detects new repositories & thesis contributions)
       </div>
 
       {/* Search + Filter Bar */}
@@ -147,7 +147,7 @@ export function ProjectsSection() {
 
       <div className="cards-grid">
         {filtered.map((repo) => (
-          <div key={repo.id} className="memory-card project-card">
+          <div key={repo.id} className="memory-card project-card liquid-gl-surface liquid-gl-card">
             {/* Language & Badge Top */}
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "6px" }}>
               <div style={{ display: "flex", gap: "6px", alignItems: "center", flexWrap: "wrap" }}>

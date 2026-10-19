@@ -21,7 +21,7 @@ export function ChatPlayground({ persona, settings }) {
       id: "intro-msg",
       sender: "ai",
       text: isFirstPerson
-        ? `**SV-2 PILOT COMMS ONLINE.** 📡\n\nHey! I'm **${persona.identity.fullName}**'s AI Digital Twin. I'm calibrated with all my creative engineering archives—from my **Music Composition Web App** (Web Audio synthesis) to **Genshin Draft PvP**, **Electron Desktop Workspaces**, and full-stack platforms on Render.\n\nWhat telemetry or project shall we inspect?`
+        ? `**SV-2 PILOT COMMS ONLINE.** 📡\n\nHey! I'm **${persona.identity.fullName}**'s AI Digital Twin. I'm calibrated with all my creative engineering archives: from my **Music Composition Web App** (Web Audio synthesis) to **Genshin Draft PvP**, **Electron Desktop Workspaces**, and full-stack platforms on Render.\n\nWhat telemetry or project shall we inspect?`
         : `**SV-2 COCKPIT SYSTEM INITIALIZED.** 📡\n\nHello! I am the tactical AI Representative representing **${persona.identity.fullName}** (@${persona.identity.handle}).\n\nAsk me anything about Ron's GitHub repositories, technical skills, web audio synthesis engines, or development philosophy!`,
       timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
       provider: "SV-2 INGRAM NEURAL CORE"
